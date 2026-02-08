@@ -1,0 +1,233 @@
+:root {
+  --spine-color: rgba(255, 255, 255, 0.2);
+  --page-color: #f4f4f4;
+  --bg-color: #2c3e50;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-color);
+  color: #333;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: white;
+}
+
+/* --- Form Styling --- */
+.book-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  max-width: 500px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.book-form input {
+  flex: 1 1 45%; /* Inputs take up half width */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.book-form button {
+  width: 100%;
+  padding: 12px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.book-form button:hover {
+  background: #2ecc71;
+}
+
+/* --- Bookshelf Layout --- */
+.bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* --- The Book Cover Design --- */
+.book {
+  width: 160px;
+  height: 240px;
+  background-color: #e74c3c; /* Default color */
+  border-radius: 2px 6px 6px 2px;
+  /* This gradient creates the "spine" effect on the left */
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 20%);
+  /* Shadow gives it depth/thickness */
+  box-shadow: 
+    inset 4px 0 10px rgba(0,0,0,0.1), /* Spine curve */
+    5px 5px 15px rgba(0,0,0,0.3);     /* Drop shadow */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 15px;
+  color: white;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.book:hover {
+  transform: translateY(-5px); /* Lift up slightly on hover */
+}
+
+.book h3 {
+  font-family: 'Georgia', serif; /* Serif fonts look "bookish" */
+  font-size: 1.2rem;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  line-height: 1.3;
+}
+
+.book .author {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.book .year {
+  font-size: 0.8rem;
+  margin-top: auto; /* Pushes year to bottom */
+  opacity: 0.8;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 5px;
+}
+
+/* Floating Action Buttons (Edit/Delete) */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.actions button {
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.2s;
+}
+
+.book:hover .actions button {
+  opacity: 1; /* Show on hover */
+}
+
+.btn-edit { background: #f1c40f; color: black; }
+.btn-delete { background: #c0392b; color: white; }
+/* --- 🆕 Modal (Popup) Styling - Polished --- */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.7); /* Darker dim for focus */
+  backdrop-filter: blur(4px); /* Blurs the background books */
+}
+
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 12px; /* Matches your main form rounded corners */
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Deep shadow for pop effect */
+  font-family: inherit; /* Use the same font as the rest of the app */
+  animation: slideIn 0.3s ease-out; /* Smooth entry animation */
+}
+
+/* Make labels look sharp */
+.modal-content label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+/* Make inputs look exactly like your "Add Book" form */
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px; /* Spacing between fields */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't break layout */
+  background-color: #f9f9f9;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #27ae60; /* Green highlight when typing */
+  background-color: #fff;
+}
+
+/* Button Layout */
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.modal-buttons button:active {
+  transform: scale(0.98); /* Click press effect */
+}
+
+/* Save Button (Green) */
+.btn-save { 
+  background-color: #27ae60; 
+  color: white; 
+  flex: 2; /* Takes up more space */
+}
+
+/* Cancel Button (Grey/Red) */
+.btn-cancel { 
+  background-color: #95a5a6; 
+  color: white; 
+  flex: 1;
+}
+
+.btn-cancel:hover {
+  background-color: #7f8c8d;
+}
+
+/* Animation to make it slide down slightly */
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

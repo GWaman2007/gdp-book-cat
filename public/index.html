@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Books Catalogue App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>📚 My Library</h1>
+
+  <div class="book-form">
+    <input type="text" id="title" placeholder="Book Title" />
+    <input type="text" id="author" placeholder="Author Name" />
+    <input type="text" id="genre" placeholder="Genre" />
+    <input type="number" id="year" placeholder="Year" />
+    <button onclick="addBook()">+ Add to Shelf</button>
+  </div>
+
+  <div id="books" class="bookshelf">
+    </div>
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <h2>Edit Book</h2>
+    <input type="hidden" id="edit-id">
+    
+    <label>Title:</label>
+    <input type="text" id="edit-title">
+    
+    <label>Author:</label>
+    <input type="text" id="edit-author">
+    
+    <label>Genre:</label>
+    <input type="text" id="edit-genre">
+    
+    <label>Year:</label>
+    <input type="number" id="edit-year">
+
+    <div class="modal-buttons">
+      <button onclick="saveEdit()" class="btn-save">Save Changes</button>
+      <button onclick="closeModal()" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
